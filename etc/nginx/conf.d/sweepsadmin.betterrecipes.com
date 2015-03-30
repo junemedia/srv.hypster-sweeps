@@ -1,0 +1,68 @@
+# dailysweeps
+server {
+    server_name                 sweepsadmin.betterrecipes.com
+#                                win.betterrecipes.com
+#                                ~.*dailysweeps\.[^\.]+?\.resolute\.com;
+    root                        /var/www/html/sweepsadmin.betterrecipes.com;
+
+    fastcgi_cache               off;
+    fastcgi_ignore_headers      X-Accel-Buffering;
+
+    # bring in the restrictive robots.txt if not on prod
+    include                     /etc/nginx-robots.conf;
+
+    open_file_cache             off;
+
+    location /_reports {
+        internal;
+        expires                 -1;
+    }
+
+    location / {
+        set $script_name        /index.php;
+        try_files               $uri $uri.html @php;
+        # canNOT add $uri/ to the try_files directive, because the
+        # index directive will throw a 403 error, even if the @php
+        # returns 200.  Very icky--yuuuuuk!
+        ### try_files               $uri $uri/ $uri.html @php;
+    }
+
+    # Set faaaaaaar reaching expiration for compiled CSS/JS
+    location ~ "\.[0-9a-f]{6}\.(?:css|js)$" {
+        expires                 max;
+        error_page 404          @empty;
+    }
+
+    # Set faaaaaaar reaching expiration for /pimg files
+    # Show unavailable.png for images that don't exist.
+    location ^~ /pimg {
+        expires                 max;
+        error_page 404          @unavailable;
+    }
+    location @unavailable {
+        expires                 -1;
+        try_files               /dev/null /img/unavailable.png;
+    }
+
+    # regex to catch-all static asset URLs
+    location ~ \.(?:jpe?g|png|js|css|gif|woff|ico|xml|txt|pdf|svg|gz|zip)$ {
+        expires                 @0h0m;
+        error_page 404          @empty;
+    }
+
+    location ~ \.php($|/) {
+        internal;
+        return 404;
+    }
+
+    location @php {
+        include                 php.conf;
+        fastcgi_pass            127.0.0.1:9000;
+    }
+
+    location @empty {
+        expires                 -1;
+        empty_gif;
+    }
+
+}
