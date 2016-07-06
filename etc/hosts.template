@@ -1,0 +1,6 @@
+
+# Service Hosts (use these in your app code)
+# mdb = master database server
+# mfs = master file server
+# mmc = master memcache server
+127.0.0.1                               mdb mfs mmc

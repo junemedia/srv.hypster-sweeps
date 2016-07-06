@@ -4,6 +4,8 @@ As root:
 
     # cd /etc
     # cp -a hosts hosts.bak
+    # cp -a hosts /srv/etc/hosts
+    # cat /srv/etc/hosts.template >> /srv/etc/hosts
     # rm hosts
     # ln -s /srv/etc/hosts
 
