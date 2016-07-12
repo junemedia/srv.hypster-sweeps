@@ -3,30 +3,26 @@
 As root:
 
     # cd /etc
-    # cp -a hosts hosts.bak
+    # ln -s /dev/null nginx-robots.conf
+
     # cp -a hosts /srv/etc/hosts
     # cat /srv/etc/hosts.template >> /srv/etc/hosts
-    # rm hosts
+    # mv hosts hosts.bak
     # ln -s /srv/etc/hosts
 
-    # cp -a my.cnf my.cnf.bak
-    # rm my.cnf
+    # mv my.cnf my.cnf.bak
     # ln -s /srv/etc/my.cnf
 
-    # cp -a nginx nginx.bak
-    # rm -rf nginx
+    # mv nginx nginx.bak
     # ln -s /srv/etc/nginx
 
-    # cp -a php-fpm.conf php-fpm.conf.bak
-    # rm php-fpm.conf
+    # mv php-fpm.conf php-fpm.conf.bak
     # ln -s /srv/etc/php-fpm.conf
 
-    # cp -a php.ini php.ini.bak
-    # rm php.ini
+    # mv php.ini php.ini.bak
     # ln -s /srv/etc/php.ini
 
-    # cp -a postfix postfix.bak
-    # rm -rf postfix
+    # mv postfix postfix.bak
     # ln -s /srv/etc/postfix
 
     # cd /srv
@@ -34,4 +30,7 @@ As root:
     # chown nginx /srv/incoming/tmp/nginx_upload_tmp
     # chmod 0700 /srv/incoming/tmp/nginx_upload_tmp
 
-    # ln -s /dev/null nginx-robots.conf
+    # cd /srv
+    # mkdir /srv/sites
+    # git clone https://github.com/junemedia/dailysweeps.git /srv/sites/dailysweeps
+
