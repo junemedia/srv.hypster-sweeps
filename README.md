@@ -1,8 +1,75 @@
 # server setup
 
-As root:
+Basic setup:
 
-    # cd /etc
+    # yum update
+    # yum install vim zsh git
+
+    # adduser jshearer
+    # passwd jshearer
+
+    # groupadd jm-dev
+    # usermod -a -G jm-dev jshearer
+
+    # groupadd sudo
+    # usermod -a -G sudo jshearer
+
+Edit sudoers file and add line `%sudo ALL=(ALL)   ALL`
+
+    # visudo
+
+Install nginx and open up firewall:
+
+    # yum install nginx
+    # systemctl start nginx.service
+    # systemctl enable nginx.service
+    # firewall-cmd --zone=public --add-service=http
+    # firewall-cmd --zone=public --add-service=http --permanent
+    # firewall-cmd --zone=public --add-service=https
+    # firewall-cmd --zone=public --add-service=https --permanent
+
+Install php:
+
+    # yum install php php-fpm php-mysql php-pear php-mbstring
+    # systemctl start php-fpm.service
+    # systemctl enable php-fpm.service
+
+Install MySQL:
+
+    # yum install http://www.percona.com/downloads/percona-release/redhat/0.1-3/percona-release-0.1-3.noarch.rpm
+    # yum install Percona-Server-server-55
+    # systemctl start mysql
+    # systemctl enable mysql
+    # mysql_secure_installation
+
+Install memcached and fail2ban:
+
+    # yum install php-pecl-memcached memcached
+    # systemctl start memcached.service
+    # systemctl enable memcached.service
+
+    # yum install fail2ban
+    # systemctl start fail2ban.service
+    # systemctl enable fail2ban.service
+
+
+Clone repository and create some dirs:
+
+    # git clone https://github.com/junemedia/srv.git /srv
+    # cd /srv/
+    # mkdir incoming
+    # mkdir -p incoming/tmp/nginx_upload_tmp
+    # mkdir -p incoming/dailysweeps/reports
+    # mkdir -p incoming/dailysweeps/pimg
+
+Set permissions on temp upload dir:
+
+    # chown nginx incoming/tmp/nginx_upload_tmp/
+    # chmod 0700 incoming/tmp/nginx_upload_tmp/
+
+Make `/etc` links:
+
+    # cd /etc/
     # ln -s /dev/null nginx-robots.conf
 
     # cp -a hosts /srv/etc/hosts
@@ -26,9 +93,6 @@ As root:
     # ln -s /srv/etc/postfix
 
     # cd /srv
-    # mkdir -p /srv/incoming/tmp/nginx_upload_tmp
-    # chown nginx /srv/incoming/tmp/nginx_upload_tmp
-    # chmod 0700 /srv/incoming/tmp/nginx_upload_tmp
 
     # cd /srv
     # mkdir /srv/sites
