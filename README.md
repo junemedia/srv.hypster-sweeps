@@ -79,6 +79,7 @@ Make `/etc` links:
 
     # mv my.cnf my.cnf.bak
     # ln -s /srv/etc/my.cnf
+    # ln -s /srv/etc/my.cnf.d
 
     # mv nginx nginx.bak
     # ln -s /srv/etc/nginx
