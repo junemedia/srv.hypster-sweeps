@@ -1,6 +1,6 @@
 # server setup
 
-Basic setup:
+## Basic setup:
 
     # yum update
     # yum install vim zsh git
@@ -99,3 +99,12 @@ Make `/etc` links:
     # mkdir /srv/sites
     # git clone https://github.com/junemedia/dailysweeps.git /srv/sites/dailysweeps
 
+Create `log` directory
+
+    # mkdir /srv/sites/log
+    # chmod 0777 /srv/sites/log
+
+
+## Notes
+
+1. `php-fpm` runs as the `apache` user as set in `/srv/etc/php-fpm.conf`; assume this is left over from some earlier version of the code?
