@@ -18,6 +18,10 @@ Edit sudoers file and add line `%sudo ALL=(ALL)   ALL`
 
     # visudo
 
+Make sure the CentOS 7 EPEL repository is installed
+
+    # yum install epel-release
+
 Install nginx and open up firewall:
 
     # yum install nginx
