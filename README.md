@@ -44,7 +44,7 @@ Install MySQL:
 
 Install memcached and fail2ban:
 
-    # yum install php-pecl-memcached memcached
+    # yum install php-pecl-memcache memcached
     # systemctl start memcached.service
     # systemctl enable memcached.service
 
