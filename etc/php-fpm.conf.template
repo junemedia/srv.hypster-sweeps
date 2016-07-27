@@ -28,3 +28,5 @@ pm.max_spare_servers = 50
 pm.max_requests = 10000
 pm.status_path = /php
 
+; set to 'development', 'testing' or 'production'
+env[DEBUG] = 'production'

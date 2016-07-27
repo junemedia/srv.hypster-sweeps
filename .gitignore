@@ -5,3 +5,4 @@
 /sites
 
 /etc/hosts
+/etc/php-fpm.conf
