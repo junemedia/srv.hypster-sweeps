@@ -56,6 +56,13 @@ Install memcached and fail2ban:
     # systemctl start fail2ban.service
     # systemctl enable fail2ban.service
 
+Install nodejs and npm
+
+    # yum install nodejs npm ruby ruby-devel
+    # npm install grunt-cli
+    # gem update --system
+    # gem install compass
+
 
 Clone repository and create some dirs:
 
