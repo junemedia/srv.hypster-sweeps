@@ -679,7 +679,7 @@ sample_directory = /usr/share/doc/postfix-2.10.1/samples
 readme_directory = /usr/share/doc/postfix-2.10.1/README_FILES
 
 ### JangoSMTP Relay Configuration
-relayhost = [relay.jangosmtp.net]
-smtp_sasl_auth_enable = yes
-smtp_sasl_password_maps = hash:/etc/postfix/relay_passwd
-smtp_sasl_security_options = noanonymous
+#relayhost = [relay.jangosmtp.net]
+#smtp_sasl_auth_enable = yes
+#smtp_sasl_password_maps = hash:/etc/postfix/relay_passwd
+#smtp_sasl_security_options = noanonymous
