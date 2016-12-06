@@ -101,11 +101,6 @@ Make `/etc` links:
     # mv php.ini php.ini.bak
     # ln -s /srv/etc/php.ini
 
-    # mv postfix postfix.bak
-    # ln -s /srv/etc/postfix
-
-    # cd /srv
-
     # cd /srv
     # mkdir /srv/sites
     # git clone https://github.com/junemedia/dailysweeps.git /srv/sites/dailysweeps
